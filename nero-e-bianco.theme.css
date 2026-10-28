@@ -1,0 +1,246 @@
+/**
+ * @name Nero e Bianco
+ * @author TUO_NOME
+ * @authorId TUO_ID_DISCORD
+ * @version 1.0.0
+ * @description Tema monocromatico nero/bianco con pannelli in vetro e sfondo personalizzabile.
+ * @source https://github.com/TUO_USERNAME/nero-e-bianco
+ * @website https://github.com/TUO_USERNAME/nero-e-bianco
+ */
+
+/* ================================================================
+   IMPOSTAZIONI RAPIDE: modifica solo questa parte
+   ================================================================ */
+:root {
+  /* Sfondo: sostituisci "none" con un tuo link, es. url("https://i.imgur.com/xxxx.jpg") */
+  --nb-bg-image: none;
+
+  --nb-bg-position: center;      /* es: center, 40% center, right center */
+  --nb-bg-dim: 0.55;             /* 0 = sfondo nitido, 1 = tutto nero */
+  --nb-blur: 14px;               /* sfocatura dei pannelli (0px per disattivarla) */
+
+  --nb-panel: 0, 0, 0;           /* colore base pannelli (RGB) */
+  --nb-panel-a-low: 0.42;        /* trasparenza barra server / canali */
+  --nb-panel-a-mid: 0.30;        /* trasparenza chat */
+  --nb-panel-a-high: 0.62;       /* trasparenza popup / menu */
+
+  --nb-accent: #e8e8e8;          /* accento (bottoni, link, selezioni) */
+  --nb-accent-hover: #ffffff;
+  --nb-on-accent: #0a0a0a;       /* testo sopra l'accento */
+  --nb-text: #f2f2f2;
+  --nb-text-muted: #a8a8a8;
+  --nb-text-faint: #6e6e6e;
+  --nb-border: rgba(255, 255, 255, 0.10);
+}
+
+/* ================================================================
+   SFONDO
+   ================================================================ */
+html, body {
+  background:
+    linear-gradient(rgba(0,0,0,var(--nb-bg-dim)), rgba(0,0,0,var(--nb-bg-dim))),
+    var(--nb-bg-image) !important;
+  background-size: cover !important;
+  background-position: var(--nb-bg-position) !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+  background-color: #000 !important;
+}
+
+/* ================================================================
+   VARIABILI DI DISCORD (palette in bianco e nero, pannelli trasparenti)
+   ================================================================ */
+:root,
+.theme-dark, .theme-darker, .theme-light, .theme-midnight,
+.visual-refresh, .visual-refresh.theme-dark, .visual-refresh.theme-light {
+  /* sfondi (nuova nomenclatura) */
+  --background-base-lowest: rgba(var(--nb-panel), var(--nb-panel-a-low));
+  --background-base-lower: rgba(var(--nb-panel), var(--nb-panel-a-low));
+  --background-base-low: rgba(var(--nb-panel), var(--nb-panel-a-low));
+  --background-surface-high: rgba(var(--nb-panel), var(--nb-panel-a-mid));
+  --background-surface-higher: rgba(var(--nb-panel), var(--nb-panel-a-high));
+  --background-surface-highest: rgba(var(--nb-panel), var(--nb-panel-a-high));
+  --chat-background-default: rgba(var(--nb-panel), var(--nb-panel-a-mid));
+  --chat-background: rgba(var(--nb-panel), var(--nb-panel-a-mid));
+  --bg-base-primary: rgba(var(--nb-panel), var(--nb-panel-a-mid));
+  --bg-base-secondary: rgba(var(--nb-panel), var(--nb-panel-a-low));
+  --bg-base-tertiary: rgba(var(--nb-panel), var(--nb-panel-a-low));
+  --bg-surface-overlay: rgba(var(--nb-panel), var(--nb-panel-a-high));
+  --bg-surface-raised: rgba(var(--nb-panel), var(--nb-panel-a-high));
+  --bg-overlay-1: rgba(var(--nb-panel), var(--nb-panel-a-low));
+  --bg-overlay-2: rgba(var(--nb-panel), var(--nb-panel-a-low));
+  --bg-overlay-3: rgba(var(--nb-panel), var(--nb-panel-a-mid));
+  --bg-overlay-chat: rgba(var(--nb-panel), var(--nb-panel-a-mid));
+
+  /* sfondi (vecchia nomenclatura, ancora usata in alcune parti) */
+  --background-primary: rgba(var(--nb-panel), var(--nb-panel-a-mid));
+  --background-secondary: rgba(var(--nb-panel), var(--nb-panel-a-low));
+  --background-secondary-alt: rgba(var(--nb-panel), var(--nb-panel-a-low));
+  --background-tertiary: rgba(var(--nb-panel), var(--nb-panel-a-low));
+  --background-floating: rgba(var(--nb-panel), var(--nb-panel-a-high));
+  --background-accent: rgba(var(--nb-panel), var(--nb-panel-a-high));
+  --deprecated-card-bg: rgba(var(--nb-panel), var(--nb-panel-a-mid));
+  --deprecated-store-bg: rgba(var(--nb-panel), var(--nb-panel-a-mid));
+  --channeltextarea-background: rgba(255, 255, 255, 0.07);
+  --input-background: rgba(255, 255, 255, 0.07);
+  --scrollbar-thin-thumb: rgba(255, 255, 255, 0.25);
+  --scrollbar-thin-track: transparent;
+  --scrollbar-auto-thumb: rgba(255, 255, 255, 0.25);
+  --scrollbar-auto-track: transparent;
+  --scrollbar-auto-scrollbar-color-thumb: rgba(255, 255, 255, 0.25);
+  --scrollbar-auto-scrollbar-color-track: transparent;
+
+  /* hover / selezione */
+  --background-modifier-hover: rgba(255, 255, 255, 0.07);
+  --background-modifier-selected: rgba(255, 255, 255, 0.13);
+  --background-modifier-active: rgba(255, 255, 255, 0.16);
+  --background-modifier-accent: rgba(255, 255, 255, 0.10);
+  --background-mod-subtle: rgba(255, 255, 255, 0.05);
+  --background-mod-normal: rgba(255, 255, 255, 0.09);
+  --background-mod-strong: rgba(255, 255, 255, 0.14);
+  --background-message-hover: rgba(255, 255, 255, 0.04);
+
+  /* testo */
+  --text-default: var(--nb-text);
+  --text-normal: var(--nb-text);
+  --text-strong: #ffffff;
+  --text-primary: var(--nb-text);
+  --text-secondary: var(--nb-text-muted);
+  --text-muted: var(--nb-text-muted);
+  --text-subtle: var(--nb-text-faint);
+  --text-tertiary: var(--nb-text-faint);
+  --header-primary: #ffffff;
+  --header-secondary: var(--nb-text-muted);
+  --channels-default: var(--nb-text-muted);
+  --interactive-normal: var(--nb-text-muted);
+  --interactive-hover: #ffffff;
+  --interactive-active: #ffffff;
+  --interactive-muted: var(--nb-text-faint);
+  --text-link: #ffffff;
+  --text-brand: #ffffff;
+
+  /* bordi */
+  --border-subtle: var(--nb-border);
+  --border-normal: rgba(255, 255, 255, 0.16);
+  --border-strong: rgba(255, 255, 255, 0.24);
+  --border-faint: var(--nb-border);
+
+  /* accento (al posto del "blurple") */
+  --brand-100: #f5f5f5; --brand-130: #f0f0f0; --brand-160: #ececec;
+  --brand-200: #e8e8e8; --brand-230: #e4e4e4; --brand-260: #dedede;
+  --brand-300: #d8d8d8; --brand-330: #d2d2d2; --brand-345: #cccccc;
+  --brand-360: var(--nb-accent);
+  --brand-400: var(--nb-accent);
+  --brand-430: var(--nb-accent);
+  --brand-460: var(--nb-accent);
+  --brand-500: var(--nb-accent);
+  --brand-530: var(--nb-accent-hover);
+  --brand-560: #cfcfcf;
+  --brand-600: #bdbdbd;
+  --brand-630: #a8a8a8;
+  --brand-660: #8f8f8f;
+  --brand-700: #6f6f6f;
+  --brand-730: #555555;
+  --brand-760: #3d3d3d;
+  --brand-800: #2a2a2a;
+  --brand-860: #1a1a1a;
+  --brand-900: #101010;
+  --brand-experiment: var(--nb-accent);
+  --brand-experiment-05a: rgba(255,255,255,0.05);
+  --brand-experiment-10a: rgba(255,255,255,0.10);
+  --brand-experiment-15a: rgba(255,255,255,0.15);
+  --brand-experiment-20a: rgba(255,255,255,0.20);
+  --brand-experiment-30a: rgba(255,255,255,0.30);
+  --brand-experiment-60a: rgba(255,255,255,0.60);
+  --brand-experiment-560: #cfcfcf;
+  --brand-experiment-600: #bdbdbd;
+  --blurple-50: var(--nb-accent);
+  --blurple-500: var(--nb-accent);
+  --bg-brand: var(--nb-accent);
+  --control-brand-foreground: var(--nb-accent);
+  --control-brand-foreground-new: var(--nb-accent);
+  --button-filled-brand-background: var(--nb-accent);
+  --button-filled-brand-background-hover: var(--nb-accent-hover);
+  --button-filled-brand-background-active: #cfcfcf;
+  --button-filled-brand-text: var(--nb-on-accent);
+  --mention-background: rgba(255, 255, 255, 0.16);
+  --mention-foreground: #ffffff;
+  --focus-primary: #ffffff;
+}
+
+/* ================================================================
+   BLUR "VETRO" SUI PANNELLI PRINCIPALI
+   ================================================================ */
+[class*="guilds_"] > nav,
+[class*="sidebar_"],
+[class*="chatContent_"],
+[class*="members_"],
+[class*="membersWrap_"],
+[class*="container_"][class*="privateChannels"],
+[class*="sidebarList_"],
+[class*="chat_"] > [class*="content_"],
+[class*="searchResultsWrap_"],
+[class*="peopleColumn_"],
+[class*="nowPlayingColumn_"] {
+  -webkit-backdrop-filter: blur(var(--nb-blur));
+  backdrop-filter: blur(var(--nb-blur));
+}
+
+/* barra del titolo / header */
+[class*="title_"][class*="bar"],
+[class*="titleBar_"],
+[class*="bar_"][class*="title"] {
+  background: transparent !important;
+}
+
+/* menu, popout, modali */
+[class*="layer_"] [class*="menu_"],
+[class*="popout_"],
+[class*="modal_"][class*="root"],
+[class*="focusLock_"] > [class*="root_"] {
+  -webkit-backdrop-filter: blur(calc(var(--nb-blur) * 1.4));
+  backdrop-filter: blur(calc(var(--nb-blur) * 1.4));
+  border: 1px solid var(--nb-border);
+}
+
+/* ================================================================
+   RIFINITURE
+   ================================================================ */
+/* bottoni principali: sfondo chiaro, testo scuro */
+[class*="lookFilled_"][class*="colorBrand_"],
+button[class*="colorBrand_"][class*="lookFilled_"] {
+  background-color: var(--nb-accent) !important;
+  color: var(--nb-on-accent) !important;
+}
+[class*="lookFilled_"][class*="colorBrand_"]:hover {
+  background-color: var(--nb-accent-hover) !important;
+}
+[class*="lookFilled_"][class*="colorBrand_"] * { color: inherit; }
+
+/* campo di scrittura */
+[class*="channelTextArea_"] {
+  border: 1px solid var(--nb-border);
+  border-radius: 10px;
+}
+
+/* bordo sottile su server e canale selezionato */
+[class*="selected_"][class*="wrapper_"] [class*="pill_"],
+[class*="item_"] > [class*="pill_"] span {
+  background-color: #ffffff !important;
+}
+
+/* link e menzioni */
+[class*="markup_"] a { color: #ffffff; text-decoration: underline; text-decoration-color: rgba(255,255,255,.35); }
+[class*="mention"][class*="wrapper_"],
+[class*="mentioned_"] {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+}
+[class*="mentioned_"]::before { background-color: #ffffff !important; }
+
+/* barra di scorrimento sottile */
+::-webkit-scrollbar-thumb { background-color: rgba(255,255,255,.22) !important; border-radius: 8px; }
+::-webkit-scrollbar-track { background: transparent !important; }
+
+/* selezione testo */
+::selection { background: rgba(255, 255, 255, 0.85); color: #000; }
